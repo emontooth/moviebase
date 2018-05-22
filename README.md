@@ -23,5 +23,5 @@ Producer ID | Name | About
 
 ## Instruction on how to run MovieBase
 
-First you navigate to the [MovieBase repo.] (https://github.com/emontooth/moviebase.git)
+First you navigate to the [MovieBase repo.](https://github.com/emontooth/moviebase.git)
 
