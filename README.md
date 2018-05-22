@@ -25,7 +25,7 @@ Producer ID | Name | About
 
 1.  Navigate to the [MovieBase repo.](https://github.com/emontooth/moviebase.git) and downloand the zip file or clone the repo. 
 1. After you have a local copy of the application you can head to your computers command line (terminal for Mac).
-1. Navigate to the project folder in the command line and activate the virtual environment.
+1. Navigate to the project folder by using the command `cd "your_project_folder" in the command line and activate the virtual environment.
 1. To activate type 
 `source venv/bin/activate`
 into your command line while in the application's proper directory.
