@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'da
 db = SQLAlchemy(app)
 
 class Producer(db.Model):
-    __tablename__ = 'Producers'
+    __tablename__ = 'producers'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     about = db.Column(db.Text)
@@ -20,12 +20,12 @@ class Producer(db.Model):
 
 
 class Movie(db.Model):
-    __tablename__ = 'Movies'
+    __tablename__ = 'movies'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256))
     year = db.Column(db.Integer)
     actors = db.Column(db.Text)
-    producer_id = db.Column(db.Integer, db.ForeignKey('Producers.id'))
+    producer_id = db.Column(db.Integer, db.ForeignKey('producers.id'))
 
 @app.route('/')
 def homepage():
@@ -134,7 +134,7 @@ def add_movies():
 @app.route('/movie/edit/<int:id>', methods=['GET', 'POST'])
 def edit_movie(id):
     movie = Movie.query.filter_by(id=id).first()
-    producers = Movie.query.all()
+    producers = Producer.query.all()
     if request.method == 'GET':
         return render_template('movie-edit.html', movie=movie, producers=producers)
     if request.method == 'POST':
@@ -158,7 +158,7 @@ def delete_movie(id):
         return render_template('movie-delete.html', movie=movie, producers=producers)
     if request.method == 'POST':
         # use the id to delete the song
-        movie.query.filter_by(id=id).delete()
+        # movie.query.filter_by(id=id).delete()
         db.session.delete(movie)
         db.session.commit()
         return redirect(url_for('show_all_movies'))
@@ -186,12 +186,6 @@ def get_user_name(name):
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-
-@app.route('/movie/<int:id>/')
-def get_movie_id(id):
-    return "Hi, this is %s and the movie's id is %d" % ('administrator', id)
-
 
 
 

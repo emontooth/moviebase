@@ -3,7 +3,7 @@
 {% block page_content%}
 
 <div class="container">
-  <h1 class="mt-5"><i class="fa fa-movie" aria-hidden="true"></i> Movies:</h1>
+  <h1 class="mt-5"><i  aria-hidden="true"></i> Movies:</h1>
   <div class="row bottom-margin">
     <a href="/movie/add" class="btn btn-primary" role="button" aria-disabled="true">Add Movies</a>
   </div>
@@ -27,7 +27,6 @@
         <td>{{movie.year}}</td>
         <td>{{movie.producer.name}}</td>
         <td>
-          <!--  view lyrics button trigger modal -->
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{movie.id}}">
                 View
               </button>
@@ -77,7 +76,6 @@
             var row = $(this).parent().parent();
             swal({
                 title: "Are you sure?",
-                // text: "You are going to delete song" + song.id + ".",
                 type: "warning",
                 html: true,
                 showCancelButton: true,
