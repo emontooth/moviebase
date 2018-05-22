@@ -1,0 +1,47 @@
+{% extends "index.html"%}
+{% block title %}Edit Movie{% endblock %}
+{% block page_content%}
+
+<div class="container">
+    <h1 class="mt-5"><i class="fa fa-music" aria-hidden="true"></i> Edit Movie:</h1>
+    <form action="/movie/edit/{{movie.id}}" method="post">
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" name="name" value="{{movie.name}}" required="true">
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <select class="form-control" name="year">
+          {% for i in range(1950, 2025) %}
+            {% if i == movie.year %}
+              <option selected="selected">{{i}}</option>
+            {% else %}
+              <option>{{i}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Producer</label>
+        <select class="form-control" name="producer">
+          {% for producer in producers %}
+            {% if producer == movie.producer %}
+              <option selected="selected">{{producer.name}}</option>
+            {% else %}
+              <option>{{producer.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        Producer not in the list? <a href="/producer/add" class="btn btn-success" role="button" aria-disabled="true">Add Producers</a>
+      </div>
+      <div class="form-group">
+        <label>Actors</label>
+        <textarea class="form-control" name="actors" required="true">{{movie.actors}}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+  </div>
+
+{% endblock%}

@@ -1,22 +1,16 @@
 {% extends "index.html" %}
-{% block title %}Home Page of MovieBase{% endblock %}
+{% block title %}Home Page{% endblock %}
 {% block head%}
   {{ super() }}
 {% endblock%}
 {% block page_content%}
 {{ super() }}
 
+<div class="container">
+    <h1 class="mt-5"><i  aria-hidden="true"></i> Welcome to MovieBase!</h1>
+    <p>MovieBase is a web application developed by Edward Montooth which allows a user to track and update a listing of their favorite movies and producers.</p>
+  </div>
 
-<div id="bs">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>MovieBase</h1>
-      </div>
-      <div class="col">
-        <p>MovieBase is a web application developed by Edward Montooth which allows a user to track and update a listing of their favorite movies and producers.</p>
-      </div>
-    </div>
-</div>
-</div>
+
+
 {% endblock%}
