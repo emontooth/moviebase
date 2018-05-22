@@ -28,5 +28,9 @@ Producer ID | Name | About
 1. Navigate to the project folder in the command line and activate the virtual environment.
 1. To activate type 
 `source venv/bin/activate`
-into your command line while in the application proper directory.
+into your command line while in the application's proper directory.
+1. After the virtual environment is activated type `python manage.py deploy` into the command line to deploy the database.
+1. Next type `python moviebase.py` in the commmand line and the address to where the application is being run will come up.
+1. Now you can navigate the website in anyway you would like!
+#### Remember that you can edit, add and delete movies and producers!
 
