@@ -21,4 +21,7 @@ Producer ID | Name | About
 3 | Geogre Lucas | George Walton Lucas Jr. (born May 14, 1944) is an American filmmaker and entrepreneur.
 
 
-`<what is this >`
+## Instruction on how to run MovieBase
+
+First you navigate to the [MovieBase repo.] (https://github.com/emontooth/moviebase.git)
+
