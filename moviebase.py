@@ -65,8 +65,6 @@ def add_ajax_producers():
     return jsonify({"id": str(producer.id), "name": producer.name})
 
 
-#not working
-
 
 @app.route('/api/producer/<int:id>', methods=['DELETE'])
 def delete_ajax_producer(id):
