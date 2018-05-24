@@ -17,8 +17,6 @@ class Producer(db.Model):
     about = db.Column(db.Text)
     movies = db.relationship('Movie', backref='producer', cascade="delete")
 
-
-
 class Movie(db.Model):
     __tablename__ = 'movies'
     id = db.Column(db.Integer, primary_key=True)
@@ -67,6 +65,21 @@ def add_ajax_producers():
     return jsonify({"id": str(producer.id), "name": producer.name})
 
 
+#not working
+
+
+@app.route('/api/producer/<int:id>', methods=['DELETE'])
+def delete_ajax_producer(id):
+    producer = Producer.query.get_or_404(id)
+    db.session.delete(producer)
+    db.session.commit()
+    return jsonify({"id": str(producer.id), "name": producer.name})
+
+
+
+
+
+
 
 @app.route('/producer/edit/<int:id>', methods=['GET', 'POST'])
 def edit_producer(id):
@@ -78,8 +91,6 @@ def edit_producer(id):
         producer.about = request.form['about']
         db.session.commit()
         return redirect(url_for('show_all_producers'))
-
-
 
 
 @app.route('/producer/delete/<int:id>', methods=['GET', 'POST'])
@@ -96,12 +107,7 @@ def delete_producer(id):
         return redirect(url_for('show_all_producers'))
 
 
-@app.route('/api/producer/<int:id>', methods=['DELETE'])
-def delete_ajax_producer(id):
-    producer = Producer.query.get_or_404(id)
-    db.session.delete(producer)
-    db.session.commit()
-    return jsonify({"id": str(producer.id), "name": producer.name})
+
 
 
 @app.route('/movies')
@@ -113,10 +119,9 @@ def show_all_movies():
 
 @app.route('/movie/add', methods=['GET', 'POST'])
 def add_movies():
+    producers = Producer.query.all()
     if request.method == 'GET':
-        producers = Producer.query.all()
         return render_template('movie-add.html', producers=producers)
-
     if request.method == 'POST':
         name = request.form['name']
         year = request.form['year']
@@ -128,6 +133,21 @@ def add_movies():
         db.session.commit()
 
         return redirect(url_for('show_all_movies'))
+
+
+#@app.route('/producer/add', methods=['GET', 'POST'])
+#def add_producers():
+#    if request.method == 'GET':
+#        movies =Movie.query.all()
+#        return render_template('producer-add.html')
+#    if request.method == 'POST':
+#        name = request.form['name']
+#        about = request.form['about']
+#
+#        producer = Producer(name=name, about=about)
+#        db.session.add(producer)
+#        db.session.commit()
+#        return redirect(url_for('show_all_producers'))
 
 
 
@@ -150,6 +170,10 @@ def edit_movie(id):
 
 
 
+
+
+
+
 @app.route('/movie/delete/<int:id>', methods=['GET', 'POST'])
 def delete_movie(id):
     movie = Movie.query.filter_by(id=id).first()
@@ -163,6 +187,7 @@ def delete_movie(id):
         db.session.commit()
         return redirect(url_for('show_all_movies'))
 
+
 @app.route('/api/movie/<int:id>', methods=['DELETE'])
 def delete_ajax_movie(id):
     movie = Movie.query.get_or_404(id)
@@ -173,14 +198,6 @@ def delete_ajax_movie(id):
 
 
 
-@app.route('/users')
-def show_all_users():
-    return render_template('user-all.html')
-
-
-@app.route('/users/<string:name>/')
-def get_user_name(name):
-    return render_template('users.html')
 
 
 @app.route('/about')

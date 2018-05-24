@@ -1,15 +1,4 @@
-h1 {
-  font-family: 'Roboto', sans-serif;
-}
-#homepageguy{
-  color: Green;
-}
-.container {
-  position: absolute;
-}
-#navbar {
-  position: absolute;
-}
-#bs {
-  position: absolute;
+h1  {
+  font-family: 'Roboto', sans-serif !important;
+  color : red;
 }

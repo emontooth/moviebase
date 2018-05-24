@@ -39,12 +39,13 @@
 
 {% endblock%}
 
-{% block scripts%}
+{% block scripts %}
 {{super()}}
 <script>
   $(document).ready(function() {
     $(".delete_ajax_btn").click(function(event) {
       var producer_id = $(this).data("producer-id");
+
       var row = $(this).parent().parent();
       swal({
           title: "Are you sure?",
